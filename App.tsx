@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text } from 'react-native';
+import HomeScreen from './components/review/home';
+import AboutScreen from './components/review/about';
+import DetailScreen from './components/review/detail';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+import { OPENSANS_REGULAR } from './utils/const';
+import 'react-native-gesture-handler';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AppNavigation from './components/navigation/app.navigation';
+
+SplashScreen.preventAutoHideAsync();
+
+
+
+const App = () => {
+    const [loaded, error] = useFonts({
+        [OPENSANS_REGULAR]: require('./assets/fonts/OpenSans-Regular.ttf'),
+    });
+    useEffect(() => {
+        if (loaded || error) {
+            SplashScreen.hideAsync();
+        }
+    }, [loaded, error]);
+    if (!loaded && !error) {
+        return null;
+    }
+    const Stack = createNativeStackNavigator<RootStackParamList>();
+    
+    return (
+        <NavigationContainer>
+            <AppNavigation />
+        </NavigationContainer>
+
+    );
+};
+
+export default App;
