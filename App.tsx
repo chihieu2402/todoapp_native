@@ -13,6 +13,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppNavigation from './components/navigation/app.navigation';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,10 +34,11 @@ const App = () => {
     const Stack = createNativeStackNavigator<RootStackParamList>();
     
     return (
-        <NavigationContainer>
-            <AppNavigation />
-        </NavigationContainer>
-
+        <SafeAreaView style={{ flex: 1 }}>
+            <NavigationContainer>
+                <AppNavigation />
+            </NavigationContainer>
+        </SafeAreaView>
     );
 };
 

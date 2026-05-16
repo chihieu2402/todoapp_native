@@ -9,14 +9,12 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         flexDirection: 'row',
         backgroundColor: '#ccc',
-        paddingTop: 40
+        // paddingTop: 40
     },
     HeaderText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginLeft: 0,
-        width: '100%',
+        flex: 1,
         textAlign: 'center',
+        fontSize: 25,
     },
 })
 

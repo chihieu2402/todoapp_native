@@ -38,9 +38,6 @@ const HomeScreen = (props: any) => {
           )}
         />  
       </View>
-      <Button title="Go to Details"
-      />
-
     </View>
   )
 }
