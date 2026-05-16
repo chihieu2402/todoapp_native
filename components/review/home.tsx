@@ -1,8 +1,8 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { View, Text, Button, FlatList, TouchableOpacity ,StyleSheet} from "react-native"
-import AppHeader from "../navigation/app.header";
-
+import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
+import CreateModal from "./review.modal";
 interface IReview {
   id: number;
   title: string;
@@ -22,9 +22,13 @@ const HomeScreen = (props: any) => {
     { id: 1, title: 'Review 1', star: 5 },
     { id: 2, title: 'Review 2', star: 4 },
   ]);
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View>
       <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Review List</Text>
+      <View style={{ alignItems: 'center', padding: 10 }}>
+      <SimpleLineIcons name="plus" size={30} color="orange" onPress={() => setModalVisible(true)} />
+      </View>
       <View>
         <FlatList
           data={reviews}
@@ -38,6 +42,7 @@ const HomeScreen = (props: any) => {
           )}
         />  
       </View>
+      <CreateModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
     </View>
   )
 }
