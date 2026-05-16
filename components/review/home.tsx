@@ -23,6 +23,11 @@ const HomeScreen = (props: any) => {
     { id: 2, title: 'Review 2', star: 4 },
   ]);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const addNew = (review: IReview) => {
+    setReview([...reviews, review]);
+  }
+
   return (
     <View>
       <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Review List</Text>
@@ -42,7 +47,7 @@ const HomeScreen = (props: any) => {
           )}
         />  
       </View>
-      <CreateModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
+      <CreateModal modalVisible={modalVisible} setModalVisible={setModalVisible} addNew={addNew} />
     </View>
   )
 }
